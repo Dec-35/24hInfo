@@ -1,22 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik+Moonrocks&display=swap');
+
+* {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: #efefef;
     padding: 0;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-size: 100%;
+    background-position: bottom;
+    scroll-behavior: smooth !important;
+    background-image: url('cristian-palmer-XexawgzYOBc-unsplash.jpg');
+    background-color: #001520;
+    background-repeat: no-repeat;
+    transition: all 1s ease-in-out;
+    height: 100vh;
+}
+
+#discoverContainer {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    background-image: url('atlantisMap.jpg');
+    background-size: cover;
+    transition: opacity 1s ease-in-out;
+    filter: opacity(0.6) brightness(0.7);
 }
 
 
 #mainContainer {
     display: flex;
-    width: 50%;
-    height: 80vh;
-    padding: 1em;
+    width: 100%;
+    height: 100vh;
+
     justify-content: center;
-    align-items: left;
+    align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
+
+
+    &.goToView>* {
+        opacity: 1;
+        transition: all 2s ease-in-out;
+
+        &:nth-child(1) {
+            transform: translateX(1000%) translateY(-200%);
+        }
+
+        &:nth-child(2) {
+            transform: translateX(-500%) translateY(100%);
+        }
+    }
+}
+
+#navbar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    padding-left: 2em;
+    width: fit-content;
+    height: 100vh;
+    margin: 0 auto 0 0.2em;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+
+
+    a {
+        width: 30px;
+
+        display: block;
+        background-color: #878787c4;
+        mask-size: contain;
+        position: relative;
+        color: transparent;
+
+        &.active {
+            background-color: rgba(246, 246, 246, 0.956);
+        }
+
+        &:nth-child(1) {
+            mask-image: url('house.svg');
+
+
+            aspect-ratio: 50/44;
+
+
+
+        }
+
+        &:nth-child(2) {
+            mask-image: url('eye.svg');
+            aspect-ratio: 50/34;
+        }
+
+        &:nth-child(3) {
+            mask-image: url('calendar.svg');
+            aspect-ratio: 50/55;
+        }
+
+
+    }
 }
 
 h1 {
-    margin: 0.2em 0;
+    font-size: 82px;
+    font-family: 'Rubik Moonrocks',
+        cursive;
+    color: #efefef;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    display: block;
+    filter: drop-shadow(2px 2px 0px rgba(204, 204, 204, 0.5));
+
+    &.activate::after {
+        animation: move 1s ease-in-out forwards;
+    }
+
+    &::after {
+        content: url(' pngShark.png');
+        display: block;
+
+        transform-origin: top right;
+
+        width: 200px;
+        height: 100px;
+        scale: 0.3;
+        position: absolute;
+        top: 54px;
+        left: -40%;
+        z-index: 3;
+
+        filter: brightness(0.5);
+
+        transition: all 0.5s ease-in-out;
+
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: scale(1) translateX(0) rotateY(0deg);
+    }
+
+    100% {
+        transform: scale(0.3) translateX(2000px) rotateY(65deg);
+    }
+
+
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100vw;
+    height: fit-content;
+    scroll-behavior: smooth;
+}
+
+p {
+    color: #ededed;
+    font-weight: 600;
+    font-size: 1.2em;
+    margin: 0;
+    z-index: 5;
+    position: relative;
+    filter: drop-shadow(0px 0px 2px rgba(65, 65, 65, 0.729));
+}
+
+.spacer {
+    width: 100vw;
+    height: 100px;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: relative;
+        z-index: 40;
+        background: linear-gradient(0deg, #001520 0%, #001520 70%, #00152000 100%);
+        display: block;
+        transform: translateY(-40px);
+        width: 100%;
+        height: 50px;
+        backdrop-filter: blur(20px);
+    }
+}
+
+h2 {
+    color: #ededed;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin: 2rem 4rem;
+    z-index: 5;
+    position: relative;
+}
+
+iframe {
+    margin: 2rem auto;
+    border-radius: 8px;
+    padding: 0.8em;
+    border: none;
+    background-color: #efefef;
+    overflow: hidden;
+}
+
+.mouseInfo {
+    position: fixed;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    color: #efefef;
 }

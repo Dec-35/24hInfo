@@ -1,21 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik+Moonrocks&display=swap");
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #efefef;
   padding: 0;
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", sans-serif;
+  background-size: 100%;
+  background-position: bottom;
+  scroll-behavior: smooth !important;
+  background-image: url("cristian-palmer-XexawgzYOBc-unsplash.jpg");
+  background-color: #001520;
+  background-repeat: no-repeat;
+  transition: all 1s ease-in-out;
+  height: 100vh;
+}
+
+#discoverContainer {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  background-image: url("atlantisMap.jpg");
+  background-size: cover;
+  transition: opacity 1s ease-in-out;
+  filter: opacity(0.6) brightness(0.7);
 }
 
 #mainContainer {
   display: flex;
-  width: 50%;
-  height: 80vh;
-  padding: 1em;
+  width: 100%;
+  height: 100vh;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
 }
+#mainContainer.goToView > * {
+  opacity: 1;
+  transition: all 2s ease-in-out;
+}
+#mainContainer.goToView > *:nth-child(1) {
+  transform: translateX(1000%) translateY(-200%);
+}
+#mainContainer.goToView > *:nth-child(2) {
+  transform: translateX(-500%) translateY(100%);
+}
+
+#navbar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2em;
+  padding-left: 2em;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100vh;
+  margin: 0 auto 0 0.2em;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+#navbar a {
+  width: 30px;
+  display: block;
+  background-color: rgba(135, 135, 135, 0.768627451);
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  position: relative;
+  color: transparent;
+}
+#navbar a.active {
+  background-color: rgba(246, 246, 246, 0.956);
+}
+#navbar a:nth-child(1) {
+  -webkit-mask-image: url("house.svg");
+          mask-image: url("house.svg");
+  aspect-ratio: 50/44;
+}
+#navbar a:nth-child(2) {
+  -webkit-mask-image: url("eye.svg");
+          mask-image: url("eye.svg");
+  aspect-ratio: 50/34;
+}
+#navbar a:nth-child(3) {
+  -webkit-mask-image: url("calendar.svg");
+          mask-image: url("calendar.svg");
+  aspect-ratio: 50/55;
+}
 
 h1 {
-  margin: 0.2em 0;
+  font-size: 82px;
+  font-family: "Rubik Moonrocks", cursive;
+  color: #efefef;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  display: block;
+  filter: drop-shadow(2px 2px 0px rgba(204, 204, 204, 0.5));
+}
+h1.activate::after {
+  animation: move 1s ease-in-out forwards;
+}
+h1::after {
+  content: url(" pngShark.png");
+  display: block;
+  transform-origin: top right;
+  width: 200px;
+  height: 100px;
+  scale: 0.3;
+  position: absolute;
+  top: 54px;
+  left: -40%;
+  z-index: 3;
+  filter: brightness(0.5);
+  transition: all 0.5s ease-in-out;
+}
+
+@keyframes move {
+  0% {
+    transform: scale(1) translateX(0) rotateY(0deg);
+  }
+  100% {
+    transform: scale(0.3) translateX(2000px) rotateY(65deg);
+  }
+}
+#content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  scroll-behavior: smooth;
+}
+
+p {
+  color: #ededed;
+  font-weight: 600;
+  font-size: 1.2em;
+  margin: 0;
+  z-index: 5;
+  position: relative;
+  filter: drop-shadow(0px 0px 2px rgba(65, 65, 65, 0.729));
+}
+
+.spacer {
+  width: 100vw;
+  height: 100px;
+  position: relative;
+}
+.spacer::before {
+  content: "";
+  position: relative;
+  z-index: 40;
+  background: linear-gradient(0deg, #001520 0%, #001520 70%, rgba(0, 21, 32, 0) 100%);
+  display: block;
+  transform: translateY(-40px);
+  width: 100%;
+  height: 50px;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+}
+
+h2 {
+  color: #ededed;
+  font-weight: 600;
+  font-size: 1.5em;
+  margin: 2rem 4rem;
+  z-index: 5;
+  position: relative;
+}
+
+iframe {
+  margin: 2rem auto;
+  border-radius: 8px;
+  padding: 0.8em;
+  border: none;
+  background-color: #efefef;
+  overflow: hidden;
+}
+
+.mouseInfo {
+  position: fixed;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+  color: #efefef;
 }/*# sourceMappingURL=style.css.map */

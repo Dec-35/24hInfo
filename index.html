@@ -10,12 +10,87 @@
     </head>
 
     <body>
-        <div id="mainContainer">
-            <h1>Bienvenue sur le site de la Team Iclipse</h1>
-            <p>La masterclass des teams des 24h de l'info, bien meilleure que les autres (évidemment)</p>
+        <div id="navbar">
+            <a onclick="leaveView(), toggleActive(this)" class="linkButton active" href="#mainContainer">Accueil</a>
+            <a onclick="goToView(), toggleActive(this)" class="linkButton" href="#mainContainer">Découvrir</a>
+            <a onclick="leaveView(), toggleActive(this)" class="linkButton" href="#calendarLink">Calendrier</a>
+            <div class="mouseInfo">Accueil</div>
+        </div>
+        <div id="discoverContainer">
 
+        </div>
+        <div id="content">
+            <div id="mainContainer">
+
+                <h1 id="atlantisTitle" class="">ATLANTIS </h1>
+                <p>Découvrez tout un univers sous-marin</p>
+
+
+            </div>
+            <div class="spacer"></div>
+            <h2 id="calendarLink">Participez à la vie sous-marine !</h2>
+            <iframe
+                src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FParis&mode=WEEK&hl=fr&title=Calendrier%20Atlantis&src=MDlmOTE0MDAxYTExZmMzNWU0ZDljMzZjYTBkZjYyNzgzNWU2NzBkZDAxNzg3MTdlMzc4OWMzMjg0NDYxN2I1MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%233F51B5"
+                style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
 
     </body>
+    <script>
+        document.getElementById('navbar').addEventListener('mousemove', function () {
+            //add element that follows the cursor with the name of the link
+            var target = document.getElementsByClassName('mouseInfo')[0]
+
+            //get the closest link to the cursor :
+            var closestLink = document.elementFromPoint(event.clientX, event.clientY)
+            if (closestLink.classList.contains('linkButton')) {
+                target.innerHTML = closestLink.innerHTML
+                target.style.opacity = "1"
+            } else {
+                target.style.opacity = "0"
+            }
+            //stick the element to the cursor
+            target.style.left = event.clientX + 30 + "px"
+            target.style.top = event.clientY + 10 + "px"
+        })
+
+        document.getElementById('navbar').addEventListener('mouseleave', function () {
+            document.getElementsByClassName('mouseInfo')[0].style.opacity = "0"
+        })
+
+
+
+        document.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.getElementById('atlantisTitle').classList.add('activate');
+            } else {
+                toggleActive(document.getElementsByClassName('linkButton')[0])
+
+                document.getElementById('atlantisTitle').classList.remove('activate');
+            }
+        })
+
+        function goToView() {
+            document.getElementById('mainContainer').classList.add('goToView');
+            document.body.style.backgroundSize = "110%"
+            document.getElementById('discoverContainer').style.opacity = "0.4"
+            document.body.style.overflow = "hidden"
+        }
+
+        function leaveView() {
+            document.getElementById('mainContainer').classList.remove('goToView');
+            document.body.style.backgroundSize = "100%"
+
+            document.getElementById('discoverContainer').style.opacity = "0"
+
+            document.body.style.overflow = "auto"
+        }
+
+        function toggleActive(elem) {
+            Array.from(document.getElementsByClassName('active')).forEach(element => {
+                element.classList.remove('active')
+            });
+            elem.classList.add('active')
+        }
+    </script>
 
 </html>
