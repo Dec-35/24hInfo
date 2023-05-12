@@ -1,0 +1,21 @@
+body {
+  background-color: #efefef;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+#mainContainer {
+  display: flex;
+  width: 50%;
+  height: 80vh;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+h1 {
+  margin: 0.2em 0;
+}/*# sourceMappingURL=style.css.map */
